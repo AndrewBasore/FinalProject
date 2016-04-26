@@ -96,6 +96,10 @@ public class Check {
 		 * to 0, or below, change is generated, amountDue is set to 0, and the
 		 * check is closed.
 		 */
+		
+		String payString = "Cash Payment:       " + payment;
+		
+		checkList.getItems().add(payString);
 
 		amountDue = amountDue - payment;
 		if (amountDue <= 0) {
@@ -132,15 +136,11 @@ public class Check {
 		 */
 		isCheckClosed = true;
 	}
+	
+	protected boolean isCheckClosed(){
+		return this.isCheckClosed;
+	}
 
-	/*
-	 * SQL code
-	 * 
-	 * String returnedThing; //button return thing: item name int orderNum;
-	 * //button return thing: item order number double price; //button return
-	 * thing: item price String insertString = "INSERT INTO Item VALUES " +
-	 * returnedThing; String selectString = "SELECT FROM Item VALUES " +
-	 * orderNum;
-	 */
+
 
 }

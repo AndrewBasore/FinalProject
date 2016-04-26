@@ -3,21 +3,21 @@ package application;
 import javafx.scene.control.ListView;
 
 /*
- * Item is a generic type for menu items. We will make classes that extend from Item to make different types of items (Desserts/Entrees ect.)
+ * Item is a abstract type for menu items. We will make classes that extend from Item to make different types of items (Desserts/Entrees ect.)
  */
 public class Item {
 	private double price;
 	private String name;
-	private String type;
 	
-	//ArrayList<Modifier>  modifierList; (NYI)
-	
+	protected String type;
 	
 	
-	public Item(double price, String name, String type){
+	
+	
+	public Item(double price, String name){
 		this.price = price;
 		this.name = name;
-		this.type = type;
+		this.type = "Item";
 		
 	}
 	
@@ -44,8 +44,6 @@ public class Item {
 		return this.name;
 	}
 	
-	public String getType(){
-		return this.type;
-	}
+
 	
 }

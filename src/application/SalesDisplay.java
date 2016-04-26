@@ -34,12 +34,16 @@ import javafx.scene.text.TextAlignment;
  * into the display afterwards.
  */
 public class SalesDisplay extends DisplayScene<BorderPane>{
-	Pane optionsPane = new Pane();
-	Pane menuPane = new Pane();
-	Pane topPane = new Pane();
+	
+
 	VBox checkDisplay = new VBox(1);
+	VBox options = new VBox(4);
 	BorderPane display = new BorderPane();
 	Check currentCheck;
+	
+	BorderPane paymentDisplay = new BorderPane();
+	
+	MenuElement menu = new MenuElement();
 	
 
 	Button logout = new Button("logout");
@@ -52,11 +56,11 @@ public class SalesDisplay extends DisplayScene<BorderPane>{
 		
 		
 		
-		makeMenuArea();
-		makeCheckDisplay();
-		makeOptionsArea();
+
 		makeDisplay();
 		make();
+		makeCheckDisplay();
+		makeOptionsArea();
 		style();
 	}
 	
@@ -64,32 +68,47 @@ public class SalesDisplay extends DisplayScene<BorderPane>{
 		this.currentCheck = newCheck;
 	}
 	
-	protected void style(){
-		/*
-		 * Reads in CSS for each component of the display
-		 */
-		topPane.setStyle(scanCSS("topPaneCSS.txt"));
-		optionsPane.setStyle(scanCSS("optionsPaneCSS.txt"));
-		display.setStyle(scanCSS("mainPaneCSS.txt"));
-		
-		/*
-		 * Some other styling methods are called
-		 */
-		
-		display.setMinWidth(500);
-		display.setMinHeight(500);
-		
-		menuPane.setMinWidth(300);
-		menuPane.setMinHeight(400);
-		
-		}
-	
 	private void makeOptionsArea(){
+		
+		options.setPadding(new Insets(10));
+		
+		//Make logout button and put it into options
 		Button logout = new Button("Logout");
+		logout.setStyle(scanCSS("OptionsButtonsCSS.txt"));
 		logout.setOnAction(e->{
 			logout();
 		});
-		optionsPane.getChildren().add(logout);
+		options.getChildren().add(logout);
+		
+		//Make pay button that replaces menu with payment UI
+		Button pay = new Button("Pay");
+		pay.setStyle(scanCSS("OptionsButtonsCSS.txt"));
+		pay.setOnAction(e->{
+			//Payment event
+		});
+		options.getChildren().add(pay);
+		
+		
+		
+	}
+
+	protected void style(){
+	/*
+	 * Reads in CSS for each component of the display
+	 */
+
+	options.setStyle(scanCSS("optionsPaneCSS.txt"));
+	display.setStyle(scanCSS("mainPaneCSS.txt"));
+	
+	/*
+	 * Some other styling methods are called
+	 */
+	
+	display.setMinWidth(500);
+	display.setMinHeight(500);
+	
+
+	
 	}
 
 	private void logout(){
@@ -97,19 +116,8 @@ public class SalesDisplay extends DisplayScene<BorderPane>{
 		super.goToSceneAt(0);
 	}
 	
-	private void makeMenuArea(){
-		/*
-		 * this will need some work
-		 */
-		
-		menuPane.getChildren().add(new Label("menu Area"));
-		
-		Button pancake =  new Button("Pancake");
-		pancake.setOnMouseClicked( e ->{
-			currentCheck.addItem(new Item(1.99, "Full", "Pancake"));
-			updateCheckDisplay();
-		});
-		menuPane.getChildren().add(pancake);
+	private void showMenuArea(){
+		display.setCenter(menu.getDisplay());
 	}
 
 	public BorderPane getDisplay(){
@@ -121,11 +129,12 @@ public class SalesDisplay extends DisplayScene<BorderPane>{
 	void makeDisplay() {
 		
 		
-		System.out.println("menuPane is being placed into display.Center");
-		display.setCenter(menuPane);
+		
+		
 		display.setLeft(checkDisplay);
-		display.setRight(optionsPane);
-		display.setTop(topPane);
+		display.setRight(options);
+		showMenuArea();
+
 		
 		
 	}
