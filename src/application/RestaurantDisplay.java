@@ -43,6 +43,7 @@ public class RestaurantDisplay extends DisplayScene<BorderPane>{
 
 	@Override
 	void makeDisplay() {
+		System.out.println("Make Display is being called and new buttons are being made");
 		style();
 		populateTableArray();
 		VBox restaurantDisplay = new VBox(20);
@@ -56,7 +57,7 @@ public class RestaurantDisplay extends DisplayScene<BorderPane>{
 		for(int i = 1; i < 8; i++){
 			
 			int index = i;
-			Button tensButton = new TableDisplay(i, super.primaryStage, super.getPreviousScenesList()).getButton();
+			Button tensButton = tableArray.get(i).getButton();
 			tensButton.setOnAction(e->{
 				tableButtonPress(index);
 			});
@@ -87,8 +88,8 @@ public class RestaurantDisplay extends DisplayScene<BorderPane>{
 			
 			
 			
-			Button thirtiesButton = new TableDisplay(i, super.primaryStage, super.getPreviousScenesList()).getButton();
-			Button fortiesButton = new TableDisplay(i+10, super.primaryStage, super.getPreviousScenesList()).getButton();
+			Button thirtiesButton = tableArray.get(i).getButton();
+			Button fortiesButton = tableArray.get(i+10).getButton();
 			thirtiesButton.setOnAction(e->{
 				tableButtonPress(index);
 			});
@@ -104,8 +105,8 @@ public class RestaurantDisplay extends DisplayScene<BorderPane>{
 			int index = i;
 			HBox row = new HBox(3);
 		
-			Button teensButton = new TableDisplay(i, super.primaryStage, super.getPreviousScenesList()).getButton();
-			Button twentiesButton = new TableDisplay(i+10, super.primaryStage, super.getPreviousScenesList()).getButton();
+			Button teensButton = tableArray.get(i).getButton();
+			Button twentiesButton = tableArray.get(i+10).getButton();
 			teensButton.setOnAction(e->{
 				tableArray.get(index);
 			});
@@ -120,7 +121,7 @@ public class RestaurantDisplay extends DisplayScene<BorderPane>{
 		for(int i = 71; i < 78; i++){
 			
 			int index = i;
-			Button seventiesButton = new TableDisplay(i, super.primaryStage, super.getPreviousScenesList()).getButton();
+			Button seventiesButton = tableArray.get(i).getButton();
 			seventiesButton.setOnAction(e ->{
 				tableButtonPress(index);
 			});
@@ -153,7 +154,7 @@ public class RestaurantDisplay extends DisplayScene<BorderPane>{
 		
 	}
 
-	public void setcurrentServer(String currentServer){
+	public void setCurrentServer(String currentServer){
 		this.currentServer = currentServer;
 	}
 	
@@ -173,15 +174,6 @@ public class RestaurantDisplay extends DisplayScene<BorderPane>{
 		this.display.setStyle("-fx-background-color: #5C5393;");
 		
 	}
-
-	
-	
-		
-
-
-
-
-
 
 	
 
@@ -244,6 +236,7 @@ public class RestaurantDisplay extends DisplayScene<BorderPane>{
 	}
 	
 	protected void showScene(){
+		System.out.println("This method is being called");
 		updateButtons();
 		super.showScene();
 	}
