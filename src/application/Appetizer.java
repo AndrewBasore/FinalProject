@@ -4,10 +4,10 @@ public class Appetizer extends Item{
 
 	String type;
 
-	public Appetizer(double price, String name, String type) {
+	public Appetizer(double price, String name) {
 		super(price, name);
 		
-		this.type = type;
+		this.type = "Appetizer";
 		
 	}
 }

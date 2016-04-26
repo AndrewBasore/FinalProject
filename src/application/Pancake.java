@@ -4,9 +4,9 @@ public class Pancake extends Item{
 
 	String type;
 	
-	public Pancake(double price, String name, String type) {
+	public Pancake(double price, String name) {
 		super(price, name);
-		this.type = type;
+		this.type = "Pancake";
 	}
 
 }

@@ -4,10 +4,10 @@ public class Beverage extends Item{
 	
 	
 
-	public Beverage(double price, String name, String type) {
+	public Beverage(double price, String name) {
 		super(price, name);
 		
-		super.type = type;
+		super.type = "Beverage";
 		
 	}
 	

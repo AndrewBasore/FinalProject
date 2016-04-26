@@ -60,6 +60,11 @@ public class Item extends Stylable{
 		
 	}
 	
+	protected int compareTo(Item otherItem){
+		
+		return this.toString().compareTo(otherItem.toString());
+	}
+	
 
 	
 }
