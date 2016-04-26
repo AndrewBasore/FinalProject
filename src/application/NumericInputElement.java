@@ -179,8 +179,12 @@ public class NumericInputElement extends Stylable{
 	}
 	
 	protected double getInput(){ //implement way to parse input into double value
-			
-		return Double.parseDouble(inputArea.getText());
+		
+		String input = inputArea.getText();
+		if(input.equals(""))
+			return 0;
+		else
+			return Double.parseDouble(inputArea.getText());
 	}
 
 	
