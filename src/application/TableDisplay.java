@@ -99,11 +99,25 @@ public class TableDisplay extends DisplayScene<BorderPane>{
 		// TODO Auto-generated method stub
 		
 	}
+	
+	protected void addCheck(Check newCheck){
+		this.checks.add(newCheck);
+	}
 
 	@Override
 	public String toString() {
 		
 		return "TableButton " + this.tableNum ;
 	}
+	
+	protected void updateButton(){
+		if(this.checks.isEmpty()){
+			this.button.setStyle(scanCSS("TableButtonActiveCSS.txt"));
+		}
+		else
+			this.button.setStyle(super.scanCSS("TableButtonCSS.txt"));
+	}
+	
+
 
 }

@@ -14,7 +14,6 @@ import javafx.stage.Stage;
 
 public class RestaurantDisplay extends DisplayScene<BorderPane>{
 	
-	ArrayList<ArrayList<Check>> tableList = new ArrayList<>() ;  //Goes up to 100 for tables; //Primary index of tableList represents the table, and the arrayList at that index represents the checks at those tables.
 	
 	BorderPane display = new BorderPane();
 	/*
@@ -25,6 +24,10 @@ public class RestaurantDisplay extends DisplayScene<BorderPane>{
 	VBox colTeensTwenties = new VBox(20);
 	VBox colThirtiesForties = new VBox(20);
 	VBox colFiftiesSixties = new VBox(20);
+	
+	
+	ArrayList<TableDisplay> tableArray;
+	
 	
 	String currentServer;
 	
@@ -40,9 +43,8 @@ public class RestaurantDisplay extends DisplayScene<BorderPane>{
 
 	@Override
 	void makeDisplay() {
-		for(int i = 0; i < 100; i++){
-			tableList.add(new ArrayList<Check>());
-		}
+		style();
+		populateTableArray();
 		VBox restaurantDisplay = new VBox(20);
 		
 		HBox tables = new HBox(75);
@@ -66,16 +68,15 @@ public class RestaurantDisplay extends DisplayScene<BorderPane>{
 		for(int i = 11; i < 18; i++){
 			HBox row = new HBox(3);
 			int index = i;
-			Button teensButton = new TableDisplay(i, super.primaryStage, super.getPreviousScenesList()).getButton();
-			Button twentiesButton = new TableDisplay(i+10, super.primaryStage, super.getPreviousScenesList()).getButton();
+			Button teensButton = tableArray.get(i).getButton();
+			Button twentiesButton = tableArray.get(i+10).getButton();
 			teensButton.setOnAction(e->{
 				tableButtonPress(index);
 			});
 			twentiesButton.setOnAction(e->{
 				tableButtonPress(index + 10);
 			});
-			tableList.set(i, new ArrayList<>());
-			tableList.set(i+10, new ArrayList<>());
+			
 			row.getChildren().addAll(teensButton, twentiesButton);
 			colTeensTwenties.getChildren().add(row);
 		}
@@ -84,8 +85,7 @@ public class RestaurantDisplay extends DisplayScene<BorderPane>{
 			HBox row = new HBox(3);
 			int index = i;
 			
-			tableList.set(i, new ArrayList<>());
-			tableList.set(i+10, new ArrayList<>());
+			
 			
 			Button thirtiesButton = new TableDisplay(i, super.primaryStage, super.getPreviousScenesList()).getButton();
 			Button fortiesButton = new TableDisplay(i+10, super.primaryStage, super.getPreviousScenesList()).getButton();
@@ -103,12 +103,11 @@ public class RestaurantDisplay extends DisplayScene<BorderPane>{
 		for(int i = 51; i < 58; i++){
 			int index = i;
 			HBox row = new HBox(3);
-			tableList.set(i, new ArrayList<>());
-			tableList.set(i+10, new ArrayList<>());
+		
 			Button teensButton = new TableDisplay(i, super.primaryStage, super.getPreviousScenesList()).getButton();
 			Button twentiesButton = new TableDisplay(i+10, super.primaryStage, super.getPreviousScenesList()).getButton();
 			teensButton.setOnAction(e->{
-				tableButtonPress(index);
+				tableArray.get(index);
 			});
 			twentiesButton.setOnAction(e->{
 				tableButtonPress(index + 10);
@@ -119,7 +118,7 @@ public class RestaurantDisplay extends DisplayScene<BorderPane>{
 		}
 		
 		for(int i = 71; i < 78; i++){
-			tableList.set(i, new ArrayList<>());
+			
 			int index = i;
 			Button seventiesButton = new TableDisplay(i, super.primaryStage, super.getPreviousScenesList()).getButton();
 			seventiesButton.setOnAction(e ->{
@@ -167,18 +166,14 @@ public class RestaurantDisplay extends DisplayScene<BorderPane>{
 	}
 
 
-	private void openCheck(){
-		
-	}
+
 	
 	
 	protected void style() {
-		
+		this.display.setStyle("-fx-background-color: #5C5393;");
 		
 	}
-	private void makeNewCheck(int tableNum){
-		tableList.get(tableNum).add(new Check(this.currentServer, tableNum));
-	}
+
 	
 	
 		
@@ -215,17 +210,18 @@ public class RestaurantDisplay extends DisplayScene<BorderPane>{
 	
 
 	private void tableButtonPress(int tableNum){
-		ArrayList<Check> checkList = tableList.get(tableNum);
-		if(checkList.isEmpty()){
+		
+		
+		if(tableArray.get(tableNum).checks.isEmpty()){
 			
-			checkList.add(new Check(currentServer, tableNum));
-			SalesDisplay salesDisplay = new SalesDisplay(super.getPreviousScenesList(), super.primaryStage, checkList.get(0));
+			tableArray.get(tableNum).addCheck(new Check(this.currentServer, tableNum));
+			SalesDisplay salesDisplay = new SalesDisplay(super.getPreviousScenesList(), super.primaryStage, tableArray.get(tableNum).checks.get(0));
 			
 			salesDisplay.showScene();
 		}
 		else{
 			//Work on this later to show multiple checks that exist at the table. For now, it opens the only check
-			SalesDisplay salesDisplay = new SalesDisplay(super.getPreviousScenesList(), super.primaryStage, checkList.get(0));
+			SalesDisplay salesDisplay = new SalesDisplay(super.getPreviousScenesList(), super.primaryStage, tableArray.get(tableNum).checks.get(0));
 			salesDisplay.showScene();
 		}
 	}
@@ -235,7 +231,23 @@ public class RestaurantDisplay extends DisplayScene<BorderPane>{
 	}
 	
 	private void updateButtons(){
-		
+		for(TableDisplay table: tableArray){
+			table.updateButton();
+		}
 	}
+	
+	private void populateTableArray(){
+		tableArray = new ArrayList<>();
+		for(int i = 0; i< 78; i++){
+			tableArray.add(new TableDisplay(i, super.primaryStage, super.previousScenesList));
+		}
+	}
+	
+	protected void showScene(){
+		updateButtons();
+		super.showScene();
+	}
+	
+
 	
 }
