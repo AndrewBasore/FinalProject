@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class RestaurantDisplay extends DisplayScene<BorderPane>{
@@ -43,7 +44,7 @@ public class RestaurantDisplay extends DisplayScene<BorderPane>{
 
 	@Override
 	void makeDisplay() {
-		System.out.println("Make Display is being called and new buttons are being made");
+		
 		style();
 		populateTableArray();
 		VBox restaurantDisplay = new VBox(20);
@@ -134,13 +135,16 @@ public class RestaurantDisplay extends DisplayScene<BorderPane>{
 		
 		Button makeNewCheck = new Button("New Check");
 		makeNewCheck.setOnAction(e ->{
-			//Show prompt to ask for table number
+			promptNewCheck();
 		});
 		
 		Button logout = new Button("Logout");
 		logout.setOnAction(e->{
 			logout();
 		});;
+		
+		makeNewCheck.setStyle(scanCSS("OptionsButtonsCSS.txt"));
+		logout.setStyle(scanCSS("OptionsButtonsCSS.txt"));
 		
 		buttonRow.getChildren().addAll(makeNewCheck,logout);
 
@@ -236,9 +240,24 @@ public class RestaurantDisplay extends DisplayScene<BorderPane>{
 	}
 	
 	protected void showScene(){
-		System.out.println("This method is being called");
+		
 		updateButtons();
 		super.showScene();
+	}
+	
+	private void promptNewCheck(){
+		Stage secondaryStage = new Stage();
+		
+		secondaryStage.initModality(Modality.APPLICATION_MODAL);
+		Scene newCheckScene;
+		NumericInputElement input = new NumericInputElement(true);
+		
+		newCheckScene = new Scene(input.getDisplay());
+		
+		secondaryStage.setScene(newCheckScene);
+		secondaryStage.show();
+		
+		
 	}
 	
 

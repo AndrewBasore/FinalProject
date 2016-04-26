@@ -111,8 +111,7 @@ public class TableDisplay extends DisplayScene<BorderPane>{
 	}
 	
 	protected void updateButton(){
-		System.out.println("updateButton() is being called for table " + this.tableNum); 
-		System.out.println("and this.checks.isEmpty() is: " + this.checks.isEmpty());
+
 		if(this.checks.isEmpty()){
 			this.button.setStyle(scanCSS("TableButtonCSS.txt"));
 		}

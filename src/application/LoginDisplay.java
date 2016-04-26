@@ -134,9 +134,9 @@ public class LoginDisplay extends DisplayScene<BorderPane>{
 			restaurant.setServerName(keyValue);
 			restaurant.setStageTitle();	
 			input.clear();
-			super.printPreviousList();
+			
 			restaurant.showScene();
-			super.printPreviousList();
+			
 			
 		}
 		else{
