@@ -1,20 +1,23 @@
 package application;
 
+import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 
 /*
  * Item is a abstract type for menu items. We will make classes that extend from Item to make different types of items (Desserts/Entrees ect.)
  */
-public class Item {
+public class Item extends Stylable{
 	private double price;
 	private String name;
 	
 	protected String type;
 	
+	private Button itemButton;
 	
 	
 	
 	public Item(double price, String name){
+		itemButton = new Button(name);
 		this.price = price;
 		this.name = name;
 		this.type = "Item";
@@ -42,6 +45,19 @@ public class Item {
 	 */
 	public String getName(){
 		return this.name;
+	}
+	
+	public Button getButton(){
+		return this.itemButton;
+	}
+	
+
+
+
+	@Override
+	protected void style() {
+		this.itemButton.setStyle(scanCSS("ItemButtonCSS.txt"));
+		
 	}
 	
 
