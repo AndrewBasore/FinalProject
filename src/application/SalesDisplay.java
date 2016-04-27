@@ -169,10 +169,13 @@ public class SalesDisplay extends DisplayScene<BorderPane>{
 		Label tax = new Label(String.format("%50s%5.2f", "Tax:   ", this.currentCheck.tax));
 		Label subTotal = new Label(String.format("%47s%5.2f", "Subtotal:   ", this.currentCheck.subTotal));
 		Label total = new Label(String.format("%50s%5.2f", "Total:  ", this.currentCheck.total));
+		
+		paymentPane.setPadding(new Insets(5));
 		paymentPane.getChildren().addAll(subTotal, tax, new Label("                                     -----------------"), total);
 		paymentPane.setStyle("-fx-background-color: lavender;");
 		infoPane.getChildren().addAll(tableNum, serverName);
 		infoPane.setStyle("-fx-background-color: lavender;");
+		
 		
 		this.checkDisplay.getChildren().addAll(infoPane, currentCheck.getListView(),paymentPane);
 		this.checkDisplay.setPadding(new Insets(20));
@@ -185,12 +188,21 @@ public class SalesDisplay extends DisplayScene<BorderPane>{
 		Label tax = new Label(String.format("%50s%5.2f", "Tax:   ", this.currentCheck.tax));
 		Label subTotal = new Label(String.format("%47s%5.2f", "Subtotal:   ", this.currentCheck.subTotal));
 		Label total = new Label(String.format("%50s%5.2f", "Total:  ", this.currentCheck.total));
-		paymentPane.getChildren().addAll(subTotal, tax, new Label("                                     -----------------"), total);
+		Label amountDue = new Label(String.format("Amount Due: %7.2f", this.currentCheck.amountDue));
+		paymentPane.getChildren().addAll(subTotal, tax, new Label("                                     -----------------"), total, amountDue);
 		paymentPane.setStyle("-fx-background-color: lavender;");
+		
+		paymentPane.setPadding(new Insets(5));
+		
+		
 		
 		this.checkDisplay.getChildren().set(2, paymentPane);
 
 		
+		
+	}
+	
+	void updateCheckDisplay(double payment){
 		
 	}
 	

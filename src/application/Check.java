@@ -32,7 +32,7 @@ public class Check {
 	/*
 	 * Fields pertaining to $
 	 */
-	protected double subTotal, total, tax, discounts, amountDue, changeDueBack;
+	protected double subTotal, total, tax, discounts, amountDue, changeDueBack, payment;
 	protected final double taxRate = .06; // Sales tax rate for Michigan, can be
 										// changed for other places
 
@@ -79,6 +79,7 @@ public class Check {
 		checkList.getItems().add(newItem.toString());
 		// Total is recalculated
 		calculateTotal();
+		calculateAmountDue();
 	
 		sales.updateCheckDisplay();
 
@@ -98,15 +99,15 @@ public class Check {
 		return itemList.isEmpty();
 	}
 
-	private void payCash(double payment) {
+	protected void payCash(double payment) {
 		/*
 		 * payCash deducts payment from amountDue. Then, if amountDue is reduced
 		 * to 0, or below, change is generated, amountDue is set to 0, and the
 		 * check is closed.
 		 */
 		
-		String payString = "Cash Payment:       " + payment;
-		
+		String payString = String.format("Cash Payment:       -$%7.2f",  payment);
+		this.payment = this.payment + payment;
 		checkList.getItems().add(payString);
 
 		amountDue = amountDue - payment;
@@ -149,6 +150,9 @@ public class Check {
 		return this.isCheckClosed;
 	}
 
+	private void calculateAmountDue(){
+		this.amountDue = this.total - this.payment;
+	}
 
 
 }

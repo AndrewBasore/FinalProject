@@ -31,7 +31,10 @@ public class PaymentElement extends Display<BorderPane> {
 		payCash = new Button("Pay Cash");
 		payCash.setStyle(scanCSS("OptionsButtonsCSS.txt"));
 		payCash.setOnAction(e -> {
-			// Pay Cash Event
+			double payment = input.getInput();
+			sales.currentCheck.payCash(payment);
+			sales.updateCheckDisplay();
+			
 		});
 		
 		//Putting payment opotions into their VBox
