@@ -21,11 +21,14 @@ public class MenuElement extends Display<BorderPane>{
 	FlowPane cakesFP = new FlowPane(5,5);
 	FlowPane appsFP = new FlowPane(5,5);;
 	
+	Check targetCheck;
+	
 	VBox categories;
 	
 	Menu menu = new Menu();
 	
-	public MenuElement(){
+	public MenuElement(Check targetCheck){
+		this.targetCheck = targetCheck;
 		makeDisplay();
 	}
 	
@@ -33,6 +36,7 @@ public class MenuElement extends Display<BorderPane>{
 	
 	@Override
 	void makeDisplay() {
+		
 		display = new BorderPane();
 		
 		makeBevs();

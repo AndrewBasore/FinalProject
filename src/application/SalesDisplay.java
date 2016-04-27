@@ -43,7 +43,7 @@ public class SalesDisplay extends DisplayScene<BorderPane>{
 	
 	BorderPane paymentDisplay = new BorderPane();
 	
-	MenuElement menu = new MenuElement();
+	MenuElement menu;
 	
 
 	Button logout = new Button("logout");
@@ -51,6 +51,7 @@ public class SalesDisplay extends DisplayScene<BorderPane>{
 	public SalesDisplay( ArrayList<Scene> previousList, Stage primaryStage, Check check){
 		super(previousList, primaryStage);
 		this.currentCheck = check;
+		menu = new MenuElement(currentCheck);
 		this.primaryStage = primaryStage;
 		
 		
