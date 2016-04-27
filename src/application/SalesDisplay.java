@@ -125,7 +125,7 @@ public class SalesDisplay extends DisplayScene<BorderPane>{
 	 * Some other styling methods are called
 	 */
 	
-	display.setMinWidth(950);
+	display.setMinWidth(960);
 	display.setMinHeight(500);
 	
 

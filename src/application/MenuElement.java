@@ -39,7 +39,12 @@ public class MenuElement extends Display<BorderPane>{
 		
 		display = new BorderPane();
 		
+		//Populates FlowPanes with Item.button's
 		makeBevs();
+		makeCakes();
+		makeApps();
+		
+		//Create category and modifier buttons
 		makeCategories();
 		makeModifiers();
 		
@@ -52,16 +57,41 @@ public class MenuElement extends Display<BorderPane>{
 	}
 	
 	private void makeCategories(){
-		categories = new VBox();
+		categories = new VBox(10);
 		categories.setPadding(new Insets(5));
 		
-		//Make bev button
+		//Make bev button and add to categories
 		Button bev = new Button("Beverages");
+		bev.setPrefWidth(100);
+		bev.setPrefHeight(40);
 		bev.setStyle(scanCSS("CategoryButton.txt"));
 		bev.setOnAction(e ->{
 			showBeverages();
 		});
 		categories.getChildren().add(bev);
+		
+		//Make pancake button and add to categories
+		
+		Button cakes = new Button("Pancakes");
+		cakes.setStyle(scanCSS("CategoryButton.txt"));
+		cakes.setPrefWidth(100);
+		cakes.setPrefHeight(40);
+		cakes.setOnAction(e->{
+			showPancakes();
+		});
+		categories.getChildren().add(cakes);
+		
+		//Make appetizer button and add to categories
+		
+		Button apps = new Button("Appetizers");
+		apps.setPrefWidth(100);
+		apps.setPrefHeight(40);
+		apps.setStyle(scanCSS("CategoryButton.txt"));
+		apps.setOnAction(e->{
+			showApps();
+		});
+		categories.getChildren().add(apps);
+		
 		
 		//Set categories to display.Left
 		display.setLeft(categories);
@@ -86,6 +116,38 @@ public class MenuElement extends Display<BorderPane>{
 		}
 	}
 	
+	private void makeCakes(){
+		menu.sortArray(menu.cakeSet);
+		
+		
+		for(int i = 0; i < menu.cakeSet.size(); i++){
+			Item cake = menu.cakeSet.get(i);
+			cake.getButton().setOnAction(e->{
+				targetCheck.addItem(cake);
+			});
+			cakesFP.getChildren().add(cake.getButton());
+			
+		
+		}
+	}
+	
+	private void makeApps(){
+		menu.sortArray(menu.appSet);
+		
+		for(int i = 0; i < menu.appSet.size(); i++){
+			Item app = menu.appSet.get(i);
+			app.getButton().setOnAction(e->{
+				targetCheck.addItem(app);
+			});
+			appsFP.getChildren().add(app.getButton());
+			
+		
+		}
+		
+		
+		
+	}
+	
 	
 	private void makeModifiers(){
 		Button mod1 = new Button("Modifier 1");
@@ -107,6 +169,14 @@ public class MenuElement extends Display<BorderPane>{
 	private void showBeverages(){
 		
 		display.setCenter(bevsFP);
+	}
+	
+	private void showPancakes(){
+		display.setCenter(cakesFP);
+	}
+	
+	private void showApps(){
+		display.setCenter(appsFP);
 	}
 
 	@Override
