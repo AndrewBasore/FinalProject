@@ -6,7 +6,7 @@ import javafx.scene.control.ListView;
 /*
  * Item is a abstract type for menu items. We will make classes that extend from Item to make different types of items (Desserts/Entrees ect.)
  */
-public class Item extends Stylable{
+public class Item extends Stylable implements Comparable{
 	private double price;
 	private String name;
 	
@@ -18,6 +18,7 @@ public class Item extends Stylable{
 	
 	public Item(double price, String name){
 		itemButton = new Button(name);
+		style();
 		this.price = price;
 		this.name = name;
 		this.type = "Item";
@@ -57,12 +58,24 @@ public class Item extends Stylable{
 	@Override
 	protected void style() {
 		this.itemButton.setStyle(scanCSS("ItemButtonCSS.txt"));
+		this.itemButton.setMaxWidth(125);
+		this.itemButton.setMaxHeight(50);
+		
+		this.itemButton.setMinWidth(125);
+		this.itemButton.setMinHeight(50);
 		
 	}
 	
 	protected int compareTo(Item otherItem){
 		
 		return this.toString().compareTo(otherItem.toString());
+	}
+
+
+	@Override
+	public int compareTo(Object arg0) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 	
 

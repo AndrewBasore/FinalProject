@@ -1,5 +1,6 @@
 package application;
 
+import java.util.ArrayList;
 import java.util.TreeSet;
 
 /*
@@ -8,9 +9,9 @@ import java.util.TreeSet;
  */
 public class Menu {
 	
-	TreeSet<Beverage> bevSet = new TreeSet<>();
-	TreeSet<Pancake> cakeSet = new TreeSet<>();
-	TreeSet<Appetizer> appSet = new TreeSet<>();
+	ArrayList<Beverage> bevSet = new ArrayList<>();
+	ArrayList<Pancake> cakeSet = new ArrayList<>();
+	ArrayList<Appetizer> appSet = new ArrayList<>();
 	
 	
 	public Menu(){
@@ -23,8 +24,8 @@ public class Menu {
 	
 	private void populateBev(){
 		bevSet.add(new Beverage(2.09, "Pepsi"));
-		bevSet.add(new Beverage(2.09, "Sierra Mist"));
-		bevSet.add(new Beverage(2.09, "Diet Pepsi"));
+		bevSet.add(new Beverage(2.09, "Sierra"));
+		bevSet.add(new Beverage(2.09, "Diet"));
 		bevSet.add(new Beverage(2.09, "Root Beer"));
 		bevSet.add(new Beverage(2.09, "Iced Tea"));
 		bevSet.add(new Beverage(2.39, "Rasp Tea"));
@@ -33,10 +34,11 @@ public class Menu {
 		bevSet.add(new Beverage(2.09, "Decaff"));
 		bevSet.add(new Beverage(1.49, "Hot Tea"));
 		bevSet.add(new Beverage(2.09, "Lemonade"));
-		bevSet.add(new Beverage(2.29, "Strawberry Lemonade"));
+		bevSet.add(new Beverage(2.29, "Straw Lem"));
 		bevSet.add(new Beverage(2.09, "Hot Choc"));
-		bevSet.add(new Beverage(2.39, "Orange Juice"));
+		bevSet.add(new Beverage(2.39, "OJ"));
 		bevSet.add(new Beverage(2.39, "Milk"));
+		System.out.println("bevSet finished populating and it's size is: " + bevSet.size());
 		
 	}
 	

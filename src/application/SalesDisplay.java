@@ -54,8 +54,7 @@ public class SalesDisplay extends DisplayScene<BorderPane>{
 		this.primaryStage = primaryStage;
 		
 		
-		
-		
+
 
 		makeDisplay();
 		make();
@@ -87,6 +86,7 @@ public class SalesDisplay extends DisplayScene<BorderPane>{
 			//Payment event
 		});
 		options.getChildren().add(pay);
+		options.setAlignment(Pos.BOTTOM_CENTER);
 		
 		
 		
@@ -104,7 +104,7 @@ public class SalesDisplay extends DisplayScene<BorderPane>{
 	 * Some other styling methods are called
 	 */
 	
-	display.setMinWidth(500);
+	display.setMinWidth(950);
 	display.setMinHeight(500);
 	
 
@@ -182,13 +182,13 @@ public class SalesDisplay extends DisplayScene<BorderPane>{
 
 	@Override
 	protected void setStageTitle() {
-		// TODO Auto-generated method stub
+		super.primaryStage.setTitle("Sales Display: ");
 		
 	}
 
 	@Override
 	protected void setStageTitle(String message) {
-		// TODO Auto-generated method stub
+		super.primaryStage.setTitle("Sales Display: " + message);
 		
 	}
 

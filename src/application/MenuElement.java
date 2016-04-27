@@ -17,8 +17,13 @@ public class MenuElement extends Display<BorderPane>{
 
 	BorderPane display;
 	
-	FlowPane itemsShown;	
+	FlowPane bevsFP = new FlowPane(5,5);
+	FlowPane cakesFP = new FlowPane(5,5);
+	FlowPane appsFP = new FlowPane(5,5);;
+	
 	VBox categories;
+	
+	Menu menu = new Menu();
 	
 	public MenuElement(){
 		makeDisplay();
@@ -30,6 +35,7 @@ public class MenuElement extends Display<BorderPane>{
 	void makeDisplay() {
 		display = new BorderPane();
 		
+		makeBevs();
 		makeCategories();
 		makeModifiers();
 		
@@ -49,7 +55,7 @@ public class MenuElement extends Display<BorderPane>{
 		Button bev = new Button("Beverages");
 		bev.setStyle(scanCSS("CategoryButton.txt"));
 		bev.setOnAction(e ->{
-			// showBeverages(); set display.center to flowpane of beverages
+			showBeverages();
 		});
 		categories.getChildren().add(bev);
 		
@@ -60,6 +66,18 @@ public class MenuElement extends Display<BorderPane>{
 		
 		
 	}
+	
+	private void makeBevs(){
+		int counter = 0;
+		for(Beverage bev: menu.bevSet){
+			
+			
+			bevsFP.getChildren().add(bev.getButton());
+			counter++;
+			System.out.println(counter);
+		}
+	}
+	
 	
 	private void makeModifiers(){
 		Button mod1 = new Button("Modifier 1");
@@ -79,7 +97,7 @@ public class MenuElement extends Display<BorderPane>{
 	}
 	
 	private void showBeverages(){
-		
+		display.setCenter(bevsFP);
 	}
 
 	@Override
@@ -87,5 +105,7 @@ public class MenuElement extends Display<BorderPane>{
 		// TODO Auto-generated method stub
 		
 	}
+	
+	
 
 }
