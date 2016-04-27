@@ -32,6 +32,9 @@ public class PaymentElement extends Display<BorderPane> {
 		payCash.setStyle(scanCSS("OptionsButtonsCSS.txt"));
 		payCash.setOnAction(e -> {
 			double payment = input.getInput();
+			input.clear();
+			
+			
 			sales.currentCheck.payCash(payment);
 			sales.updateCheckDisplay();
 			
