@@ -76,6 +76,8 @@ public class SalesDisplay extends DisplayScene<BorderPane>{
 		
 		//Make logout button and put it into options
 		Button logout = new Button("Logout");
+		logout.setPrefWidth(150);
+		logout.setPrefHeight(50);
 		logout.setStyle(scanCSS("OptionsButtonsCSS.txt"));
 		logout.setOnAction(e->{
 			logout();
@@ -85,14 +87,26 @@ public class SalesDisplay extends DisplayScene<BorderPane>{
 		//Make pay button that replaces menu with payment UI
 		Button pay = new Button("Pay");
 		pay.setStyle(scanCSS("OptionsButtonsCSS.txt"));
+		pay.setPrefWidth(150);
+		pay.setPrefHeight(50);
 		pay.setOnAction(e->{
 			display.setCenter(this.pay.getDisplay());
 			
 		});
 		options.getChildren().add(pay);
-		options.setAlignment(Pos.BOTTOM_CENTER);
+	
 		
+		//Make menu button that replaces payment with menu UI
+		Button menuMain = new Button("Menu");
+		menuMain.setPrefWidth(150);
+		menuMain.setPrefHeight(50);
+		menuMain.setStyle(scanCSS("OptionsButtonsCSS.txt"));
+		menuMain.setOnAction(e->{
+			display.setCenter(this.menu.getDisplay());
+		});
+		options.getChildren().add(menuMain);
 		
+		options.setAlignment(Pos.TOP_CENTER);
 		
 	}
 

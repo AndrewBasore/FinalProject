@@ -19,6 +19,7 @@ public class PaymentElement extends Display<BorderPane> {
 		this.sales = sales;
 		input = new NumericInputElement(true);
 		
+		
 		//Getting input element
 		BorderPane inputDisplay = input.getDisplay();
 		
@@ -38,7 +39,7 @@ public class PaymentElement extends Display<BorderPane> {
 		
 
 		display.setCenter(inputDisplay);
-		display.setRight(paymentOptions);
+		display.setTop(paymentOptions);
 		display.setPadding(new Insets(50));
 		
 	}

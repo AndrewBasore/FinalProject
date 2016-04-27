@@ -41,6 +41,8 @@ public class NumericInputElement extends Stylable{
 		display = new BorderPane();
 		
 		display.setPadding(new Insets(10,10,10,10));
+		display.setMaxHeight(200);
+		display.setMaxWidth(210);
 		
 		inputArea = new TextField();
 		inputArea.setMaxWidth(140);
