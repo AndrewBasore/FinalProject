@@ -111,6 +111,16 @@ public class SalesDisplay extends DisplayScene<BorderPane>{
 		
 		options.setAlignment(Pos.TOP_CENTER);
 		
+		//Make delete button that deletes last item entered into the check
+		Button deleteLast = new Button("Delete");
+		deleteLast.setPrefHeight(50);
+		deleteLast.setPrefWidth(150);
+		deleteLast.setStyle(scanCSS("OptionsButtonsCSS.txt"));
+		deleteLast.setOnAction(e->{
+			//Deletion event
+		});
+		options.getChildren().add(deleteLast);
+		
 	}
 
 	protected void style(){
