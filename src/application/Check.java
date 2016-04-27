@@ -163,7 +163,7 @@ public class Check {
 	
 	protected void deleteLastItem(){
 		int listSize = checkList.getItems().size();
-		if(!checkList.getItems().isEmpty() && !itemList.isEmpty()){
+		if(!checkList.getItems().isEmpty() && !itemList.isEmpty()){   //Conditional makes sure that the check is not empty before deletion
 		checkList.getItems().remove(listSize-1);
 		itemList.remove(itemList.size()-1);
 		calculateTotal();

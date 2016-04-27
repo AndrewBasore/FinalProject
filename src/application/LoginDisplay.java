@@ -26,6 +26,8 @@ public class LoginDisplay extends DisplayScene<BorderPane>{
 	
 	
 	BorderPane display = new BorderPane();
+	BorderPane login = new BorderPane();
+	
 	RestaurantDisplay restaurant;
 	
 	HashMap<Integer, String> serverMap = new HashMap<>();
@@ -36,6 +38,7 @@ public class LoginDisplay extends DisplayScene<BorderPane>{
 		
 		super(new ArrayList<Scene>(), primaryStage);
 		display = new BorderPane();
+
 		
 				
 	}
@@ -85,13 +88,21 @@ public class LoginDisplay extends DisplayScene<BorderPane>{
 		VBox centerBox = new VBox(5);
 		centerBox.getChildren().addAll(inputDisplay,signIn);
 		
-		display.setCenter(centerBox);
+		login.setCenter(centerBox);
 		
-		display.setPadding(new Insets(20));
+		login.setPadding(new Insets(20));
 		
 		
-		display.setTop(greeting);
-		display.setLeft(imgBox);
+		login.setTop(greeting);
+		login.setLeft(imgBox);
+		
+		BorderPane.setAlignment(login, Pos.CENTER);
+		
+		
+		
+		display.setCenter(login);
+		
+		
 		
 	}
 

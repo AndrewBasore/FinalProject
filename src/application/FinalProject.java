@@ -17,6 +17,7 @@ public class FinalProject extends Application {
 		primaryStage.setY(0);
 		
 		
+		
 
 		login = new LoginDisplay(primaryStage);
 		login.make();

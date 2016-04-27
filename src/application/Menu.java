@@ -14,6 +14,8 @@ public class Menu {
 	ArrayList<Item> appSet = new ArrayList<>();
 
 	public Menu() {
+		
+		//Constructor just calls populate methods to create menu lists
 		populateBev();
 		populateCake();
 		populateApps();
