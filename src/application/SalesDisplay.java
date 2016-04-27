@@ -44,7 +44,7 @@ public class SalesDisplay extends DisplayScene<BorderPane>{
 	BorderPane paymentDisplay = new BorderPane();
 	
 	MenuElement menu;
-	
+	PaymentElement pay = new PaymentElement(this);
 
 	Button logout = new Button("logout");
 	
@@ -63,6 +63,7 @@ public class SalesDisplay extends DisplayScene<BorderPane>{
 		makeCheckDisplay();
 		makeOptionsArea();
 		style();
+		BorderPane.setAlignment(display.getCenter(), Pos.CENTER);
 	}
 	
 	protected void setCheck(Check newCheck){
@@ -85,7 +86,8 @@ public class SalesDisplay extends DisplayScene<BorderPane>{
 		Button pay = new Button("Pay");
 		pay.setStyle(scanCSS("OptionsButtonsCSS.txt"));
 		pay.setOnAction(e->{
-			//Payment event
+			display.setCenter(this.pay.getDisplay());
+			
 		});
 		options.getChildren().add(pay);
 		options.setAlignment(Pos.BOTTOM_CENTER);

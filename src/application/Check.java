@@ -74,10 +74,12 @@ public class Check {
 
 		// Item is added to ItemList and display is updated
 		itemList.add(newItem);
+		
+		
 		checkList.getItems().add(newItem.toString());
 		// Total is recalculated
 		calculateTotal();
-		System.out.println("sales is: " + sales);
+	
 		sales.updateCheckDisplay();
 
 	}

@@ -109,7 +109,7 @@ public class RestaurantDisplay extends DisplayScene<BorderPane>{
 			Button teensButton = tableArray.get(i).getButton();
 			Button twentiesButton = tableArray.get(i+10).getButton();
 			teensButton.setOnAction(e->{
-				tableArray.get(index);
+				tableButtonPress(index);
 			});
 			twentiesButton.setOnAction(e->{
 				tableButtonPress(index + 10);

@@ -6,6 +6,7 @@ import java.util.Set;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button; // work on makeButtons()
@@ -40,6 +41,7 @@ public class NumericInputElement extends Stylable{
 		display = new BorderPane();
 		
 		display.setPadding(new Insets(10,10,10,10));
+		
 		inputArea = new TextField();
 		inputArea.setMaxWidth(140);
 		inputArea.setMinWidth(140);

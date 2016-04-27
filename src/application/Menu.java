@@ -8,21 +8,19 @@ import java.util.TreeSet;
  * of the items the restaurant offers is stored in the sets
  */
 public class Menu {
-	
+
 	ArrayList<Item> bevSet = new ArrayList<>();
 	ArrayList<Item> cakeSet = new ArrayList<>();
 	ArrayList<Item> appSet = new ArrayList<>();
-	
-	
-	public Menu(){
+
+	public Menu() {
 		populateBev();
 		populateCake();
 		populateApps();
 
 	}
-	
-	
-	private void populateBev(){
+
+	private void populateBev() {
 		bevSet.add(new Beverage(2.09, "Pepsi"));
 		bevSet.add(new Beverage(2.09, "Sierra"));
 		bevSet.add(new Beverage(2.09, "Diet"));
@@ -40,11 +38,10 @@ public class Menu {
 		bevSet.add(new Beverage(2.39, "Milk"));
 		sortArray(bevSet);
 
-		
 	}
-	
-	private void populateCake(){
-		
+
+	private void populateCake() {
+
 		cakeSet.add(new Pancake(3.99, "Short"));
 		cakeSet.add(new Pancake(4.99, "Full"));
 		cakeSet.add(new Pancake(5.99, "Rasp Pan"));
@@ -52,38 +49,36 @@ public class Menu {
 		cakeSet.add(new Pancake(4.99, "AYCE Pan"));
 		cakeSet.add(new Pancake(5.99, "RWCC Pan"));
 		cakeSet.add(new Pancake(3.99, "Choc Pan"));
-		
+
 	}
-	
-	private void populateApps(){
+
+	private void populateApps() {
 		appSet.add(new Appetizer(7.99, "Mozz Sticks"));
 		appSet.add(new Appetizer(8.50, "Quesadilla"));
 		appSet.add(new Appetizer(4.50, "OR Basket"));
 	}
-	
-	//helper method to sort arrays of Items. Sloppy sort sorry dont judge
-	public void sortArray(ArrayList<Item> listToSort){
-		System.out.println("SortArray() is being called");
+
+	// helper method to sort arrays of Items. Sloppy sort sorry dont judge
+	public void sortArray(ArrayList<Item> listToSort) {
+
 		int counter = 1;
-		while(counter != 0){
+		while (counter != 0) {
 			counter = 0;
-			for(int i = 0 ; i < listToSort.size()-1; i++){
+			for (int i = 0; i < listToSort.size() - 1; i++) {
 				Item a = listToSort.get(i);
-				Item b = listToSort.get(i+1);
-				if(a.compareTo(b) > 0){
-					System.out.println("a and b are being switch. a: " + a + " b: " + b);
-					listToSort.set(i, b);         //Items are swapped in list
-					listToSort.set(i+1, a);
+				Item b = listToSort.get(i + 1);
+				if (a.compareTo(b) > 0) {
+
+					listToSort.set(i, b); // Items are swapped in list
+					listToSort.set(i + 1, a);
 					counter++;
-					System.out.println("counter is: " + counter);
+
 				}
-			
-			
+
 			}
-			
+
 		}
-		
-		
+
 	}
 
 }

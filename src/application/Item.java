@@ -27,11 +27,15 @@ public class Item extends Stylable implements Comparable{
 	
 	
 	public String toString(){
-		
-				
+
+		String name = String.format("%-25s", this.name);
+
+		String price =  String.format("$%7.2f", this.price);
+
 	
 	
-		return String.format("%-25s$%7.2f", this.name, this.price);
+	
+		return name + price;
 		
 	}
 	
@@ -71,7 +75,7 @@ public class Item extends Stylable implements Comparable{
 	protected int compareTo(Item otherItem){
 		
 		int result = this.toString().compareTo(otherItem.toString());
-		System.out.println("compareTo(Item) is being called. result: "+ result);
+
 		return result;
 	}
 
@@ -79,7 +83,7 @@ public class Item extends Stylable implements Comparable{
 	@Override
 	public int compareTo(Object arg0) {
 		// TODO Auto-generated method stub
-		System.out.println("compareTo(Object) is being called");
+
 		return this.toString().compareTo(arg0.toString());
 	}
 	
