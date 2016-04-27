@@ -4,6 +4,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 
 public class PaymentElement extends Display<BorderPane> {
 
@@ -17,14 +18,27 @@ public class PaymentElement extends Display<BorderPane> {
 	public PaymentElement(SalesDisplay sales) {
 		this.sales = sales;
 		input = new NumericInputElement(true);
+		
+		//Getting input element
+		BorderPane inputDisplay = input.getDisplay();
+		
+		//Column for payment options
+		VBox paymentOptions = new VBox(5);
+		paymentOptions.setPadding(new Insets(5));
 
+		//Creation of payCash button
 		payCash = new Button("Pay Cash");
-
+		payCash.setStyle(scanCSS("OptionsButtonsCSS.txt"));
 		payCash.setOnAction(e -> {
 			// Pay Cash Event
 		});
+		
+		//Putting payment opotions into their VBox
+		paymentOptions.getChildren().addAll(payCash);
+		
 
-		display.setCenter(input.getDisplay());
+		display.setCenter(inputDisplay);
+		display.setRight(paymentOptions);
 		display.setPadding(new Insets(50));
 		
 	}

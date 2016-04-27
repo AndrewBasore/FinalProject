@@ -69,7 +69,7 @@ public class NumericInputElement extends Stylable{
 	}
 
 	
-	Parent getDisplay() {
+	BorderPane getDisplay() {
 		
 		return display;
 	}
