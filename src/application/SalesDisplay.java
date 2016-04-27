@@ -50,6 +50,7 @@ public class SalesDisplay extends DisplayScene<BorderPane>{
 	
 	public SalesDisplay( ArrayList<Scene> previousList, Stage primaryStage, Check check){
 		super(previousList, primaryStage);
+		check.sales = this;
 		this.currentCheck = check;
 		menu = new MenuElement(currentCheck);
 		this.primaryStage = primaryStage;

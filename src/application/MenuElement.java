@@ -72,13 +72,17 @@ public class MenuElement extends Display<BorderPane>{
 	}
 	
 	private void makeBevs(){
-		int counter = 0;
-		for(Beverage bev: menu.bevSet){
-			
-			
+		menu.sortArray(menu.bevSet);
+
+		
+		for(int i = 0; i < menu.bevSet.size(); i++){
+			Item bev = menu.bevSet.get(i);
+			bev.getButton().setOnAction(e->{
+				targetCheck.addItem(bev);
+			});
 			bevsFP.getChildren().add(bev.getButton());
-			counter++;
-			System.out.println(counter);
+			
+		
 		}
 	}
 	
@@ -101,6 +105,7 @@ public class MenuElement extends Display<BorderPane>{
 	}
 	
 	private void showBeverages(){
+		
 		display.setCenter(bevsFP);
 	}
 

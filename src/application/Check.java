@@ -26,6 +26,8 @@ public class Check {
 	private boolean isCheckClosed;
 	protected String serverName = "Andrew B";
 	
+	SalesDisplay sales;
+	
 
 	/*
 	 * Fields pertaining to $
@@ -54,6 +56,8 @@ public class Check {
 		this.tableNum = tableNum;
 
 	}
+	
+	
 
 	public void print() {
 
@@ -73,6 +77,8 @@ public class Check {
 		checkList.getItems().add(newItem.toString());
 		// Total is recalculated
 		calculateTotal();
+		System.out.println("sales is: " + sales);
+		sales.updateCheckDisplay();
 
 	}
 

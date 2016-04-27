@@ -9,9 +9,9 @@ import java.util.TreeSet;
  */
 public class Menu {
 	
-	ArrayList<Beverage> bevSet = new ArrayList<>();
-	ArrayList<Pancake> cakeSet = new ArrayList<>();
-	ArrayList<Appetizer> appSet = new ArrayList<>();
+	ArrayList<Item> bevSet = new ArrayList<>();
+	ArrayList<Item> cakeSet = new ArrayList<>();
+	ArrayList<Item> appSet = new ArrayList<>();
 	
 	
 	public Menu(){
@@ -38,7 +38,8 @@ public class Menu {
 		bevSet.add(new Beverage(2.09, "Hot Choc"));
 		bevSet.add(new Beverage(2.39, "OJ"));
 		bevSet.add(new Beverage(2.39, "Milk"));
-		System.out.println("bevSet finished populating and it's size is: " + bevSet.size());
+		sortArray(bevSet);
+
 		
 	}
 	
@@ -58,6 +59,31 @@ public class Menu {
 		appSet.add(new Appetizer(7.99, "Mozz Sticks"));
 		appSet.add(new Appetizer(8.50, "Quesadilla"));
 		appSet.add(new Appetizer(4.50, "OR Basket"));
+	}
+	
+	//helper method to sort arrays of Items. Sloppy sort sorry dont judge
+	public void sortArray(ArrayList<Item> listToSort){
+		System.out.println("SortArray() is being called");
+		int counter = 1;
+		while(counter != 0){
+			counter = 0;
+			for(int i = 0 ; i < listToSort.size()-1; i++){
+				Item a = listToSort.get(i);
+				Item b = listToSort.get(i+1);
+				if(a.compareTo(b) > 0){
+					System.out.println("a and b are being switch. a: " + a + " b: " + b);
+					listToSort.set(i, b);         //Items are swapped in list
+					listToSort.set(i+1, a);
+					counter++;
+					System.out.println("counter is: " + counter);
+				}
+			
+			
+			}
+			
+		}
+		
+		
 	}
 
 }
