@@ -117,7 +117,7 @@ public class SalesDisplay extends DisplayScene<BorderPane>{
 		deleteLast.setPrefWidth(150);
 		deleteLast.setStyle(scanCSS("OptionsButtonsCSS.txt"));
 		deleteLast.setOnAction(e->{
-			//Deletion event
+			currentCheck.deleteLastItem();
 		});
 		options.getChildren().add(deleteLast);
 		

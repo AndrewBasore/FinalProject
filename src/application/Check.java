@@ -160,6 +160,18 @@ public class Check {
 	private void calculateAmountDue(){
 		this.amountDue = this.total - this.payment;
 	}
+	
+	protected void deleteLastItem(){
+		int listSize = checkList.getItems().size();
+		if(!checkList.getItems().isEmpty() && !itemList.isEmpty()){
+		checkList.getItems().remove(listSize-1);
+		itemList.remove(itemList.size()-1);
+		calculateTotal();
+		calculateAmountDue();
+		sales.updateCheckDisplay();
+		
+		}
+	}
 
 
 }
