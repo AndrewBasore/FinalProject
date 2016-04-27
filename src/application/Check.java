@@ -27,7 +27,7 @@ public class Check {
 	protected String serverName = "Andrew B";
 	
 	SalesDisplay sales;
-	
+	RestaurantDisplay restaurant;
 
 	/*
 	 * Fields pertaining to $
@@ -43,6 +43,7 @@ public class Check {
 		 */
 		
 		this.serverName = serverName;
+		
 
 		isCheckClosed = false;
 		checkList = new ListView<>();
@@ -91,7 +92,7 @@ public class Check {
 
 	}
 	
-	public ListView getListView(){
+	public ListView<String> getListView(){
 		return this.checkList;
 	}
 
@@ -141,9 +142,15 @@ public class Check {
 
 	private void closeCheck() {
 		/*
-		 * closeCheck changes isCheckClosed to true
+		 * closeCheck changes isCheckClosed to true, and removes check from RestaurantDisplay's active checks to closed checks
 		 */
+		this.restaurant = sales.restaurant;
 		isCheckClosed = true;
+		int index = restaurant.tableArray.get(tableNum).checks.indexOf(this);
+		restaurant.tableArray.get(tableNum).checks.remove(index);
+		restaurant.closedChecks.add(this);
+		restaurant.goToSceneAt(0);
+		
 	}
 	
 	protected boolean isCheckClosed(){

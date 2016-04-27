@@ -28,7 +28,7 @@ public class RestaurantDisplay extends DisplayScene<BorderPane>{
 	
 	
 	ArrayList<TableDisplay> tableArray;
-	
+	ArrayList<Check> closedChecks = new ArrayList<>();
 	
 	String currentServer;
 	
@@ -211,13 +211,13 @@ public class RestaurantDisplay extends DisplayScene<BorderPane>{
 		if(tableArray.get(tableNum).checks.isEmpty()){
 			
 			tableArray.get(tableNum).addCheck(new Check(this.currentServer, tableNum));
-			SalesDisplay salesDisplay = new SalesDisplay(super.getPreviousScenesList(), super.primaryStage, tableArray.get(tableNum).checks.get(0));
+			SalesDisplay salesDisplay = new SalesDisplay(super.getPreviousScenesList(), super.primaryStage, tableArray.get(tableNum).checks.get(0), this);
 			
 			salesDisplay.showScene();
 		}
 		else{
 			//Work on this later to show multiple checks that exist at the table. For now, it opens the only check
-			SalesDisplay salesDisplay = new SalesDisplay(super.getPreviousScenesList(), super.primaryStage, tableArray.get(tableNum).checks.get(0));
+			SalesDisplay salesDisplay = new SalesDisplay(super.getPreviousScenesList(), super.primaryStage, tableArray.get(tableNum).checks.get(0), this);
 			salesDisplay.showScene();
 		}
 	}
