@@ -262,9 +262,10 @@ public class RestaurantDisplay extends DisplayScene<BorderPane>{
 	}
 	
 	private Button getCheckButton(Check check){
-		Button checkButton = new Button(String.format("%d\n\n%d\n\n$%.2f", check.tableNum, check.checkNum, check.total));
+		Button checkButton = new Button(String.format("Table: %d\n\n#%d\n\n$%.2f", check.tableNum, check.checkNum, check.total));
 		checkButton.setPrefSize(100, 100);
 		checkButton.setOnAction(e->{
+			display.setCenter(tables);
 			showSalesDisplay(check);
 		});
 		
