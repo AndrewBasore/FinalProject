@@ -190,11 +190,12 @@ public class SalesDisplay extends DisplayScene<BorderPane>{
 		infoPane.setStyle("-fx-background-color: lavender;");
 		
 		
-		this.checkDisplay.getChildren().addAll(infoPane, currentCheck.getListView(),paymentPane);
+		this.checkDisplay.getChildren().addAll(infoPane, currentCheck.getListView(), currentCheck.paymentList,paymentPane);
 		this.checkDisplay.setPadding(new Insets(20));
 	}
 
 	void updateCheckDisplay(){
+		currentCheck.calculateAmountDue();
 		
 
 		VBox paymentPane = new VBox();
@@ -209,7 +210,7 @@ public class SalesDisplay extends DisplayScene<BorderPane>{
 		
 		
 		
-		this.checkDisplay.getChildren().set(2, paymentPane);
+		this.checkDisplay.getChildren().set(3, paymentPane);
 
 		
 		

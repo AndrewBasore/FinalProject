@@ -6,10 +6,12 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 import javafx.geometry.Insets;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 /*
  * Check class holds all information for guest checks and payment. It is a List of Items, fields that hold information on money,
@@ -23,6 +25,8 @@ public class Check {
 	int checkNum =1234, tableNum;
 	protected ArrayList<Item> itemList;
 	protected ListView<String> checkList;
+	protected ListView<String> paymentList = new ListView<>();
+	
 	private boolean isCheckClosed;
 	protected String serverName = "Andrew B";
 	
@@ -47,6 +51,8 @@ public class Check {
 
 		isCheckClosed = false;
 		checkList = new ListView<>();
+		checkList.setMaxHeight(500);
+		paymentList.setMaxHeight(100);
 		itemList = new ArrayList<Item>();
 
 		/*
@@ -109,7 +115,7 @@ public class Check {
 		
 		String payString = String.format("Cash Payment:       -$%7.2f",  payment);
 		this.payment = this.payment + payment;
-		checkList.getItems().add(payString);
+		paymentList.getItems().add(payString);
 
 		amountDue = amountDue - payment;
 		if (amountDue <= 0) {
@@ -141,6 +147,13 @@ public class Check {
 	}
 
 	private void closeCheck() {
+		//Show prompt that tells change due back
+		
+		Stage secondaryStage = new Stage();
+		secondaryStage.setTitle("Check is being closed");
+		
+		
+		
 		/*
 		 * closeCheck changes isCheckClosed to true, and removes check from RestaurantDisplay's active checks to closed checks
 		 */
@@ -149,6 +162,13 @@ public class Check {
 		int index = restaurant.tableArray.get(tableNum).checks.indexOf(this);
 		restaurant.tableArray.get(tableNum).checks.remove(index);
 		restaurant.closedChecks.add(this);
+		
+		Label change = new Label(String.format("Change due back is: $%.2f", this.changeDueBack));
+		change.setPadding(new Insets(50));
+		Scene changeScene = new Scene(change);
+		secondaryStage.setScene(changeScene);
+		secondaryStage.show();
+		
 		restaurant.goToSceneAt(0);
 		
 	}
@@ -157,7 +177,7 @@ public class Check {
 		return this.isCheckClosed;
 	}
 
-	private void calculateAmountDue(){
+	protected void calculateAmountDue(){
 		this.amountDue = this.total - this.payment;
 	}
 	
