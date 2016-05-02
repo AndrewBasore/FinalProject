@@ -61,6 +61,7 @@ public class LoginDisplay extends DisplayScene<BorderPane>{
 		serverMap.put(2156, "Sue C");
 		
 		input = new NumericInputElement(true);
+		input.removeDecimal();
 		Button signIn = new Button("Sign In");
 		signIn.setOnAction(e->{
 			login();
