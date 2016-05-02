@@ -38,6 +38,7 @@ public class MenuElement extends Display<BorderPane>{
 	void makeDisplay() {
 		
 		display = new BorderPane();
+		display.setPadding(new Insets(30,0,30,0));
 		
 		//Populates FlowPanes with Item.button's
 		makeBevs();
@@ -46,7 +47,8 @@ public class MenuElement extends Display<BorderPane>{
 		
 		//Create category and modifier buttons
 		makeCategories();
-		makeModifiers();
+		//makeModifiers(); (Could be implemented at client's request)
+	
 		
 	}
 
