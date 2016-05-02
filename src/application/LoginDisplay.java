@@ -55,6 +55,7 @@ public class LoginDisplay extends DisplayScene<BorderPane>{
 	@Override
 	void makeDisplay() {
 		display = new BorderPane();
+		display.setStyle("-fx-background-color: lavender;");
 		
 		serverMap.put(1423, "Craig M");
 		serverMap.put(5283, "Mark K");
