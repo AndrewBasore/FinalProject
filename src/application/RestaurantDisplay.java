@@ -8,6 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
@@ -25,7 +26,9 @@ public class RestaurantDisplay extends DisplayScene<BorderPane>{
 	VBox colTeensTwenties = new VBox(20);
 	VBox colThirtiesForties = new VBox(20);
 	VBox colFiftiesSixties = new VBox(20);
+	HBox tables = new HBox(75);
 	
+	FlowPane openChecks = new FlowPane(5,5);
 	
 	ArrayList<TableDisplay> tableArray;
 	ArrayList<Check> closedChecks = new ArrayList<>();
@@ -34,7 +37,7 @@ public class RestaurantDisplay extends DisplayScene<BorderPane>{
 	
 	public RestaurantDisplay(ArrayList<Scene> previousList, Stage primaryStage){
 		super(previousList, primaryStage);
-		
+		openChecks.setPadding(new Insets(20));
 		
 
 		makeDisplay();
@@ -49,12 +52,14 @@ public class RestaurantDisplay extends DisplayScene<BorderPane>{
 		populateTableArray();
 		VBox restaurantDisplay = new VBox(20);
 		
-		HBox tables = new HBox(75);
+		
 		tables.setPadding(new Insets(10));
 		
 		VBox deskBoard = new VBox(5);
 		
-		
+		/*
+		 * These loops populate columns with appropriate table buttons
+		 */
 		for(int i = 1; i < 8; i++){
 			
 			int index = i;
@@ -131,11 +136,16 @@ public class RestaurantDisplay extends DisplayScene<BorderPane>{
 		
 		tables.getChildren().addAll(colOnes, colTeensTwenties, colThirtiesForties, colFiftiesSixties,colSeventies);
 		
+		
+		/*
+		 * Create buttonRow and populate it with appropriate options
+		 */
 		HBox buttonRow = new HBox(1);
 		
-		Button makeNewCheck = new Button("New Check");
-		makeNewCheck.setOnAction(e ->{
-			promptNewCheck();
+		
+		Button showOpenChecks = new Button("Open Checks");
+		showOpenChecks.setOnAction(e ->{
+			showOpenChecks();
 		});
 		
 		Button logout = new Button("Logout");
@@ -143,10 +153,22 @@ public class RestaurantDisplay extends DisplayScene<BorderPane>{
 			logout();
 		});;
 		
-		makeNewCheck.setStyle(scanCSS("OptionsButtonsCSS.txt"));
-		logout.setStyle(scanCSS("OptionsButtonsCSS.txt"));
+		Button restaurant = new Button("Restaurant");
+		restaurant.setOnAction(e->{
+			showTables();
+		});
 		
-		buttonRow.getChildren().addAll(makeNewCheck,logout);
+		
+		/*
+		 * some in-line styling
+		 */
+		showOpenChecks.setStyle(scanCSS("OptionsButtonsCSS.txt"));
+		logout.setStyle(scanCSS("OptionsButtonsCSS.txt"));
+		restaurant.setStyle(scanCSS("OptionsButtonsCSS.txt"));
+		
+		buttonRow.getChildren().addAll(showOpenChecks,restaurant,logout);
+		
+	
 
 		
 		buttonRow.setPadding(new Insets(20,0,0,0));
@@ -161,6 +183,8 @@ public class RestaurantDisplay extends DisplayScene<BorderPane>{
 	public void setCurrentServer(String currentServer){
 		this.currentServer = currentServer;
 	}
+	
+	
 	
 
 
@@ -206,24 +230,81 @@ public class RestaurantDisplay extends DisplayScene<BorderPane>{
 	
 
 	private void tableButtonPress(int tableNum){
-		
+		/*On tableButtonPress(), one of two things should happen:
+		 * 1.) If table has no open checks, then a new check is created and shown (makeNewCheck())
+		 * 2.) If table does have open checks, they should be shown in a flowPane set to the center of the display,
+		 * and then open checks can be selected 
+		 */
 		
 		if(tableArray.get(tableNum).checks.isEmpty()){
-			
-			tableArray.get(tableNum).addCheck(new Check(this.currentServer, tableNum));
-			SalesDisplay salesDisplay = new SalesDisplay(super.getPreviousScenesList(), super.primaryStage, tableArray.get(tableNum).checks.get(0), this);
-			
-			salesDisplay.showScene();
+			makeNewCheck(tableNum);			
 		}
 		else{
-			//Work on this later to show multiple checks that exist at the table. For now, it opens the only check
-			SalesDisplay salesDisplay = new SalesDisplay(super.getPreviousScenesList(), super.primaryStage, tableArray.get(tableNum).checks.get(0), this);
-			salesDisplay.showScene();
+			showOpenChecks(tableNum);
 		}
 	}
 	private void logout(){
-		
+		display.setCenter(tables);
+		super.primaryStage.setTitle("Login Screen");
 		super.goToSceneAt(0, "Please Sign In: ");
+	}
+	
+	private void makeNewCheck(int tableNum){
+		tableArray.get(tableNum).addCheck(new Check(this.currentServer, tableNum));
+		showSalesDisplay(tableArray.get(tableNum).checks.get(0));
+		
+	}
+	
+	private Button getCheckButton(Check check){
+		Button checkButton = new Button(String.format("%d\n\n%d\n\n$%.2f", check.tableNum, check.checkNum, check.total));
+		checkButton.setPrefSize(100, 100);
+		checkButton.setOnAction(e->{
+			showSalesDisplay(check);
+		});
+		
+		
+		return checkButton;
+	}
+	
+	private void showTables(){
+		display.setCenter(tables);
+	}
+	
+	private void showSalesDisplay(Check check){
+		SalesDisplay salesDisplay = new SalesDisplay(super.getPreviousScenesList(), super.primaryStage, check, this);
+		salesDisplay.showScene();
+	}
+	
+	private void showOpenChecks(int tableNum){ //Shows open checks at a specific table number
+		/*
+		 * This method takes a tableNum that is presumably not empty, and then populates a flowpane of its open checks
+		 * and then sets the center display to this flowpane
+		 */
+		if(tableArray.get(tableNum).checks.isEmpty()){ //extra conditional check to make sure that method does not execute if table's checks is empty
+			System.out.println("checks is empty!");
+			return;
+		}
+		else{
+			openChecks.getChildren().clear();
+
+			for(Check check: tableArray.get(tableNum).checks){
+				openChecks.getChildren().add(getCheckButton(check));
+			}
+			display.setCenter(openChecks);
+		}
+			
+	}
+
+	private void showOpenChecks(){ //Shows open checks for all checks in the restaurant
+		openChecks.getChildren().clear();
+		for(TableDisplay table: tableArray){
+			for(Check check: table.checks){
+				openChecks.getChildren().add(getCheckButton(check));
+			}
+		}
+		display.setCenter(openChecks);
+		
+		
 	}
 	
 	private void updateButtons(){

@@ -20,7 +20,7 @@ public class Check {
 	/*
 	 * itemList field and a unique checkNum identifier
 	 */
-	int checkNum, tableNum;
+	int checkNum =1234, tableNum;
 	protected ArrayList<Item> itemList;
 	protected ListView<String> checkList;
 	private boolean isCheckClosed;

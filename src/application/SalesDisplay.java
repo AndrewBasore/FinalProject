@@ -143,7 +143,7 @@ public class SalesDisplay extends DisplayScene<BorderPane>{
 	}
 
 	private void logout(){
-		
+		super.primaryStage.setTitle("Login Screen");
 		super.goToSceneAt(0);
 	}
 	
