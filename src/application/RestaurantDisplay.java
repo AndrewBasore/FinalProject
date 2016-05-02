@@ -148,6 +148,11 @@ public class RestaurantDisplay extends DisplayScene<BorderPane>{
 			showOpenChecks();
 		});
 		
+		Button showClosedChecks = new Button("Closed Checks");
+		showClosedChecks.setOnAction(e->{
+			showClosedChecks();
+		});
+		
 		Button logout = new Button("Logout");
 		logout.setOnAction(e->{
 			logout();
@@ -163,10 +168,11 @@ public class RestaurantDisplay extends DisplayScene<BorderPane>{
 		 * some in-line styling
 		 */
 		showOpenChecks.setStyle(scanCSS("OptionsButtonsCSS.txt"));
+		showClosedChecks.setStyle(scanCSS("OptionsButtonsCSS.txt"));
 		logout.setStyle(scanCSS("OptionsButtonsCSS.txt"));
 		restaurant.setStyle(scanCSS("OptionsButtonsCSS.txt"));
 		
-		buttonRow.getChildren().addAll(showOpenChecks,restaurant,logout);
+		buttonRow.getChildren().addAll(showOpenChecks, showClosedChecks, restaurant,logout);
 		
 	
 
@@ -304,6 +310,15 @@ public class RestaurantDisplay extends DisplayScene<BorderPane>{
 		}
 		display.setCenter(openChecks);
 		
+		
+	}
+	
+	private void showClosedChecks(){
+		openChecks.getChildren().clear();
+		for(Check check: closedChecks){
+			openChecks.getChildren().add(getCheckButton(check));
+		}
+		display.setCenter(openChecks);
 		
 	}
 	

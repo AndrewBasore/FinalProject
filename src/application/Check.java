@@ -74,6 +74,10 @@ public class Check {
 	}
 
 	public void addItem(Item newItem) {
+		
+		if(isCheckClosed){
+			return;
+		}
 
 		/*
 		 * addItem takes newItem as a parameter and appends it to the check.
@@ -107,6 +111,10 @@ public class Check {
 	}
 
 	protected void payCash(double payment) {
+		
+		if(isCheckClosed){
+			return;
+		}
 		/*
 		 * payCash deducts payment from amountDue. Then, if amountDue is reduced
 		 * to 0, or below, change is generated, amountDue is set to 0, and the

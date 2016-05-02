@@ -31,12 +31,14 @@ public class PaymentElement extends Display<BorderPane> {
 		payCash = new Button("Pay Cash");
 		payCash.setStyle(scanCSS("OptionsButtonsCSS.txt"));
 		payCash.setOnAction(e -> {
+			if(!sales.currentCheck.isCheckClosed()){
 			double payment = input.getInput();
 			input.clear();
 			
 			
 			sales.currentCheck.payCash(payment);
 			sales.updateCheckDisplay();
+			}
 			
 		});
 		
