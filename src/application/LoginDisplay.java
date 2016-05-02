@@ -63,6 +63,8 @@ public class LoginDisplay extends DisplayScene<BorderPane>{
 		input = new NumericInputElement(true);
 		input.removeDecimal();
 		Button signIn = new Button("Sign In");
+		signIn.setStyle(scanCSS("InputButtonCSS.txt"));
+		signIn.setPrefSize(70, 40);
 		signIn.setOnAction(e->{
 			login();
 			
