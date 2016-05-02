@@ -90,68 +90,80 @@ public class NumericInputElement extends Stylable{
 		HBox row4 = new HBox(1);
 		HBox row5 = new HBox(1);
 		
-		Button num1 = new Button("   1    ");
+		Button num1 = new Button("1");
+		num1.setPrefSize(60, 50);
 		
 		num1.setOnAction(e -> {
 			inputArea.appendText("1");
 		});
 		num1.setStyle("-fx-font-size: 16px");
 		
-		Button num2 = new Button("   2    ");
+		Button num2 = new Button("2");
+		num2.setPrefSize(60, 50);
 		num2.setOnAction(e -> {
 			inputArea.appendText("2");
 		});
 		num2.setStyle("-fx-font-size: 16px");
 		
-		Button num3 = new Button("   3    ");
+		Button num3 = new Button("3");
+		num3.setPrefSize(60, 50);
 		num3.setOnAction(e -> {
 			inputArea.appendText("3");
 		});
 		num3.setStyle("-fx-font-size: 16px");
 		
-		Button num4 = new Button("   4    ");
+		Button num4 = new Button("4");
+		num4.setPrefSize(60, 50);
 		num4.setOnAction(e -> {
 			inputArea.appendText("4");
 		});
 		num4.setStyle("-fx-font-size: 16px");
-		Button num5 = new Button("   5    ");
+		Button num5 = new Button("5");
 		num5.setOnAction(e -> {
 			inputArea.appendText("5");
 		});
 		num5.setStyle("-fx-font-size: 16px");
-		Button num6 = new Button("   6    ");
+		num5.setPrefSize(60, 50);
+		Button num6 = new Button("6");
+		num6.setPrefSize(60, 50);
 		num6.setOnAction(e -> {
 			inputArea.appendText("6");
 		});
 		num6.setStyle("-fx-font-size: 16px");
-		Button num7 = new Button("   7    ");
+		Button num7 = new Button("7");
+		num7.setPrefSize(60, 50);
 		num7.setOnAction(e -> {
 			inputArea.appendText("7");
 		});
 		num7.setStyle("-fx-font-size: 16px");
-		Button num8 = new Button("   8    ");
+		Button num8 = new Button("8");
+		num8.setPrefSize(60, 50);
 		num8.setOnAction(e -> {
 			inputArea.appendText("8");
 		});
 		num8.setStyle("-fx-font-size: 16px");
-		Button num9 = new Button("   9    ");
+		Button num9 = new Button("9");
+		num9.setPrefSize(60, 50);
 		num9.setOnAction(e -> {
 			inputArea.appendText("9");
 		});
 		num9.setStyle("-fx-font-size: 16px");
-		Button num0 = new Button("   0    ");
+		Button num0 = new Button("0");
+		num0.setPrefSize(60, 50);
 		num0.setOnAction(e -> {
 			inputArea.appendText("0");
 		});
 		num0.setStyle("-fx-font-size: 16px");
 		
-		Button clear = new Button(" Clear  ");
+		Button clear = new Button("Clear");
+		clear.setPrefSize(60, 50);
 		clear.setOnAction(e->{
 			inputArea.clear();
 		});
 		clear.setStyle("-fx-font-size: 16px;  ");
 		
-		Button decimal = new Button("    .    ");
+		Button decimal = new Button(".");
+		decimal.setPrefSize(60, 50);
 		decimal.setOnAction(e ->{
 			if(!inputArea.getText().contains(".")){
 				inputArea.appendText(".");
@@ -160,7 +172,8 @@ public class NumericInputElement extends Stylable{
 		});
 		decimal.setStyle("-fx-font-size: 16px");
 		
-		Button doubleZero = new Button("  00   ");
+		Button doubleZero = new Button("00");
+		doubleZero.setPrefSize(60, 50);
 		doubleZero.setOnAction(e->{
 			inputArea.appendText("00");
 		});
