@@ -274,6 +274,7 @@ public class RestaurantDisplay extends DisplayScene<BorderPane>{
 	}
 	
 	private void showTables(){
+		super.primaryStage.setTitle("Restaurant View: " + this.currentServer);
 		display.setCenter(tables);
 	}
 	
@@ -287,6 +288,8 @@ public class RestaurantDisplay extends DisplayScene<BorderPane>{
 		 * This method takes a tableNum that is presumably not empty, and then populates a flowpane of its open checks
 		 * and then sets the center display to this flowpane
 		 */
+		
+		super.primaryStage.setTitle("Open Checks at table " + tableNum);
 		if(tableArray.get(tableNum).checks.isEmpty()){ //extra conditional check to make sure that method does not execute if table's checks is empty
 			System.out.println("checks is empty!");
 			return;
@@ -304,6 +307,7 @@ public class RestaurantDisplay extends DisplayScene<BorderPane>{
 
 	private void showOpenChecks(){ //Shows open checks for all checks in the restaurant
 		openChecks.getChildren().clear();
+		super.primaryStage.setTitle("Open Checks");
 		for(TableDisplay table: tableArray){
 			for(Check check: table.checks){
 				openChecks.getChildren().add(getCheckButton(check));
@@ -315,6 +319,7 @@ public class RestaurantDisplay extends DisplayScene<BorderPane>{
 	}
 	
 	private void showClosedChecks(){
+		super.primaryStage.setTitle("Closed Checks");
 		openChecks.getChildren().clear();
 		for(Check check: closedChecks){
 			openChecks.getChildren().add(getCheckButton(check));
@@ -342,20 +347,7 @@ public class RestaurantDisplay extends DisplayScene<BorderPane>{
 		super.showScene();
 	}
 	
-	private void promptNewCheck(){
-		Stage secondaryStage = new Stage();
-		
-		secondaryStage.initModality(Modality.APPLICATION_MODAL);
-		Scene newCheckScene;
-		NumericInputElement input = new NumericInputElement(true);
-		
-		newCheckScene = new Scene(input.getDisplay());
-		
-		secondaryStage.setScene(newCheckScene);
-		secondaryStage.show();
-		
-		
-	}
+
 	
 
 	
