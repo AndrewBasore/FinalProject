@@ -6,7 +6,7 @@ import javafx.scene.Parent;
  * retrieving that display.
  */
 public abstract class Display<E extends Parent> extends Stylable{
-	abstract void makeDisplay() ;
+	abstract void makeDisplay() ;ksmcljsnv
 	abstract E getDisplay();
 
 }
